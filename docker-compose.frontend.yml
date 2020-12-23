@@ -64,6 +64,7 @@ services:
       - KPI_UWSGI_CHEAPER_WORKERS_COUNT=1
       - KPI_UWSGI_HARAKIRI=120
       - KPI_UWSGI_WORKER_RELOAD_MERCY=120
+      - SSRF_ON=True # Set to False to allow using private IPs/bypass SSRF validation for local REST Service instance
     volumes:
       - ./.vols/static/kpi:/srv/static
       - ./log/kpi:/srv/logs
