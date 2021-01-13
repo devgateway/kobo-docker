@@ -5,7 +5,7 @@ version: '3'
 
 services:
   kobocat:
-    image: kobotoolbox/kobocat:2.020.52b
+    image: devgateway/kobocat:2.020.52b_1.0
     hostname: kobocat
     env_file:
       - ../kobo-env/envfile.txt
@@ -44,7 +44,7 @@ services:
           - kobocat.docker.container
 
   kpi:
-    image: kobotoolbox/kpi:2.020.52b
+    image: devgateway/kpi:2.020.52b_1.0
     hostname: kpi
     env_file:
       - ../kobo-env/envfile.txt
@@ -107,7 +107,7 @@ services:
           - nginx
 
   enketo_express:
-    image: kobotoolbox/enketo-express-extra-widgets:2.6.0
+    image: devgateway/enketo-express-extra-widgets:2.6.0_3.0.1
     env_file:
       - ../kobo-env/envfile.txt
     environment:
