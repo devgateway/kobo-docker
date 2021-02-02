@@ -140,3 +140,30 @@ server {
         proxy_redirect off;
     }
 }
+
+server {
+    listen 80;
+    server_name ${VALIDATION_TOOL_PUBLIC_SUBDOMAIN}.${PUBLIC_DOMAIN_NAME} ${VALIDATION_TOOL_PUBLIC_SUBDOMAIN}.${INTERNAL_DOMAIN_NAME};
+
+    resolver 8.8.4.4 8.8.8.8 valid=300s;
+    resolver_timeout 10s;
+
+    include /etc/nginx/includes/server_directive_common.conf;
+
+    # add_header Strict-Transport-Security max-age=63072000;
+    # add_header X-Frame-Options DENY;
+    add_header X-Content-Type-Options nosniff;
+
+    proxy_set_header Host $host${container_public_port};
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto; # Needs ELB protocol
+
+    access_log  /var/log/nginx/validation_tool.access.log with_host;
+    error_log   /var/log/nginx/validation_tool.error.log;
+
+    location / {
+        proxy_pass  http://${LOCAL_INTERFACE_IP}:8070/;
+        proxy_redirect off;
+    }
+}
