@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
-DBDATESTAMP="$(date +%Y.%m.%d.%H_%M)"
-KPI_BACKUP_FILENAME="postgres-${KPI_POSTGRES_DB}-${PG_MAJOR}-${PUBLIC_DOMAIN_NAME}-${DBDATESTAMP}.pg_dump"
-KC_BACKUP_FILENAME="postgres-${KC_POSTGRES_DB}-${PG_MAJOR}-${PUBLIC_DOMAIN_NAME}-${DBDATESTAMP}.pg_dump"
+KPI_BACKUP_FILENAME="postgres-kpi.pg_dump"
+KC_BACKUP_FILENAME="postgres-kc.pg_dump"
 cd /srv/backups
 rm -rf *.pg_dump
 
